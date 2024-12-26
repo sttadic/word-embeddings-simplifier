@@ -1,4 +1,4 @@
-package ie.atu.dip;
+package ie.atu.sw;
 
 public enum ConsoleColour { 
 	//Reset
