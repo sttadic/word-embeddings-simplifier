@@ -3,10 +3,9 @@ package ie.atu.sw;
 import static java.lang.System.out;
 
 /**
- * The class Menu serves as the main user interface, acts as the entry point and
- * controls the flow of the application. It displays varoius menu options,
- * selected paths and algorithms to the user and initiates processing based on
- * user's configuration.
+ * The class Menu serves as the main user interface and controls the flow of the
+ * application. It displays varoius menu options, selected paths and algorithms
+ * to the user and initiates processing based on user's configuration.
  */
 public class Menu {
 	private InputHandler inputHandler;

@@ -1,5 +1,16 @@
 package ie.atu.sw;
 
+/**
+ * The ConsoleColour enum provides a set of ANSI codes for formatting console 
+ * text with various colours and styles.
+ * 
+ * <br>
+ * Usage Example:
+ * <pre>
+ *     System.out.println(<i>ConsoleColour.RED</i> + "This text is red" + 
+ *     <i>ConsoleColour.RESET</i>);
+ * </pre>
+ */
 public enum ConsoleColour { 
 	//Reset
     RESET						("Reset",						"0"),
@@ -80,19 +91,40 @@ public enum ConsoleColour {
 	private final String description;
 	private final String colour;
 	
+	/**
+	 * Constructs ConsoleColour with a description and an ANSI colour code.
+	 * 
+	 * @param description a description of a colour or style
+	 * @param colour the ANSI code for the colour or style
+	 */
 	ConsoleColour(String description, String colour) {
 		this.description = description;
 		this.colour = colour;
 	}
 	
+	/**
+	 * Retrieves the description of the colour or style.
+	 * 
+	 * @return the description of the colour or style
+	 */
 	public String description() { 
 		return this.description; 
 	}
 
+	/**
+	 * Converts ConsoleColour constant to ASNI code representation.
+	 * 
+	 * @return the ANSI code for the colour or style
+	 */
 	public String colour() { 
 		return toString();
 	}
 	
+	/**
+	 * Overrides the default toString implementation.
+	 * 
+	 * @return the ANSI code for the colour or style
+	 */
 	@Override
     public String toString() {
         return CTRL_SEQ_INTRO + this.colour + CTRL_SEQ_END; 
