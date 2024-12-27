@@ -86,7 +86,22 @@ public class Menu {
 		out.println("(4) Combine All");
 		out.println();
 
-		vectorComparisonAlgo = inputHandler.processAlgorithmSelection();
+		int choice = inputHandler.processAlgorithmSelection();
+		
+		switch (choice) {
+		case 1 -> {
+			vectorComparisonAlgo = "Cosine Similarity";
+		}
+		case 2 -> {
+			vectorComparisonAlgo = "Euclidean Distance";
+		}
+		case 3 -> {
+			vectorComparisonAlgo ="Dot Product";
+		}
+		default -> {
+			vectorComparisonAlgo = "Combine All (Cosine Similarity, Euclidean Distance, Dot Product)";
+		}
+		}
 	}
 
 	private void startProcessing() {
