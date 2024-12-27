@@ -1,24 +1,17 @@
 package ie.atu.sw;
 
 import static java.lang.System.out;
-import java.util.Scanner;
 
 public class Menu {
-	private Scanner scan;
 	private InputHandler inputHandler;
+	private ConfigHandler configHandler;
 	private boolean keepRunning = true;
-	// App configuration instance variables with default values
-	private String embeddingsFilePath = "../word-embeddings.txt";
-	private String outputFilePath = "../output.txt";
-	private String inputFilePath = "../input.txt";
-	private String commonWordsFilePath = "../google-1000.txt";
-	private String vectorComparisonAlgo = "Cosine Similarity";
 	// Error message displayed within the options menu
 	private String errorMsg;
 
 	public Menu() {
-		this.scan = new Scanner(System.in);
 		this.inputHandler = new InputHandler();
+		this.configHandler = new ConfigHandler(this.inputHandler);
 	}
 
 	
@@ -26,55 +19,27 @@ public class Menu {
 	public void startApplication() {
 		while (keepRunning) {
 			showOptions();
-			int choice = inputHandler.processMenuSelection();
-			
-			switch (choice) {
-			case 1 -> setEmbeddingsPath();
-			case 2 -> setInputPath();
-			case 3 -> setOutputPath();
-			case 4 -> setCommonWordsPath();
-			case 5 -> setComparisonAlgorithm();
-			case 6 -> startProcessing();
-			case 7 -> keepRunning = false;
-			default -> errorMsg = "Invalid Selection! Please use one of the options above";
-			}
-			
+			handleChoice(inputHandler.processMenuSelection());
 		}
+		inputHandler.closeScanner();
 		out.println("Thank you for using Simplifying Text with Word Embeddings!");
-		scan.close();
 	}
-
-	// Prompt for a file path to the word embeddings file
-	private void setEmbeddingsPath() {
-		clearScreen();
-		out.print("Please specify the file path and name of the word embeddings file > ");
-		embeddingsFilePath = inputHandler.setPath(embeddingsFilePath);
-	}
-
-	// Prompt for an input file path that holds text to be simplified
-	private void setInputPath() {
-		clearScreen();
-		out.print("Please enter the file path and name of a text file to be simplified > ");
-		inputFilePath = inputHandler.setPath(inputFilePath);
-	}
-
-	// Prompt for an output file path that stores simplified text
-	private void setOutputPath() {
-		clearScreen();
-		out.print("Please enter the file path and name of a file where the results should be saved > ");
-		outputFilePath = inputHandler.setPath(outputFilePath);
-	}
-
-	// Prompt for a file that holds most common words in English
-	private void setCommonWordsPath() {
-		clearScreen();
-		out.print(
-				"Please enter the file path and name of a file that holds a list of most common words used in English > ");
-		commonWordsFilePath = inputHandler.setPath(commonWordsFilePath);
+	
+	private void handleChoice(int choice) {
+		switch (choice) {
+		case 1 -> configHandler.setEmbeddingsPath();
+		case 2 -> configHandler.setInputPath();
+		case 3 -> configHandler.setOutputPath();
+		case 4 -> configHandler.setCommonWordsPath();
+		case 5 -> comparisonAlgorithmSelection();
+		case 6 -> keepRunning = false;   // Start of processing to be implemented
+		case 7 -> keepRunning = false;
+		default -> errorMsg = "Invalid Selection! Please use one of the options above";
+		}
 	}
 
 	// Define an algoritham used to calculate distance between vectors
-	private void setComparisonAlgorithm() {
+	private void comparisonAlgorithmSelection() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE_BOLD);
 		out.println("Select Vector Comparison Algorithm");
@@ -85,29 +50,8 @@ public class Menu {
 		out.println("(3) Dot Product");
 		out.println("(4) Combine All");
 		out.println();
-
-		int choice = inputHandler.processAlgorithmSelection();
 		
-		switch (choice) {
-		case 1 -> {
-			vectorComparisonAlgo = "Cosine Similarity";
-		}
-		case 2 -> {
-			vectorComparisonAlgo = "Euclidean Distance";
-		}
-		case 3 -> {
-			vectorComparisonAlgo ="Dot Product";
-		}
-		default -> {
-			vectorComparisonAlgo = "Combine All (Cosine Similarity, Euclidean Distance, Dot Product)";
-		}
-		}
-	}
-
-	private void startProcessing() {
-		out.println("Processing...");
-		// code to start processing
-		this.keepRunning = false;
+		configHandler.setComparisonAlgorithm();
 	}
 
 	// Menu options
@@ -121,17 +65,17 @@ public class Menu {
 		out.println("*                                                          *");
 		out.println("************************************************************");
 		// Display embeddings file path
-		out.println("(1) Specify Embedding File  ---> " + ConsoleColour.GREEN + embeddingsFilePath + ConsoleColour.WHITE);
+		out.println("(1) Specify Embedding File  ---> " + ConsoleColour.GREEN + configHandler.getEmbeddingsFilePath() + ConsoleColour.WHITE);
 		// Display input file path
-		out.println("(2) Text File to Simplify   ---> " + ConsoleColour.GREEN + inputFilePath + ConsoleColour.WHITE);
+		out.println("(2) Text File to Simplify   ---> " + ConsoleColour.GREEN + configHandler.getInputFilePath() + ConsoleColour.WHITE);
 		// Display output file path
-		out.println("(3) Specify an Output file  ---> " + ConsoleColour.GREEN + outputFilePath + ConsoleColour.WHITE);
+		out.println("(3) Specify an Output file  ---> " + ConsoleColour.GREEN + configHandler.getOutputFilePath() + ConsoleColour.WHITE);
 		// Display common words file path
-		out.println("(4) Most Common Words File  ---> " + ConsoleColour.GREEN + commonWordsFilePath + ConsoleColour.WHITE);
+		out.println("(4) Most Common Words File  ---> " + ConsoleColour.GREEN + configHandler.getCommonWordsFilePath() + ConsoleColour.WHITE);
 		// Display algorithm used for comparison
-		out.println("(5) Set Comparison Method   ---> " + ConsoleColour.GREEN + vectorComparisonAlgo + ConsoleColour.WHITE);
+		out.println("(5) Set Comparison Method   ---> " + ConsoleColour.GREEN + configHandler.getVectorComparisonAlgo() + ConsoleColour.WHITE);
 		// Start simplifying text
-		out.println("(6) START");
+		out.println("(6) START PROCESSING");
 		// Quit
 		out.println("(7) Quit");
 		
@@ -150,7 +94,7 @@ public class Menu {
 	 * Source: https://intellipaat.com/community/294/java-clear-the-console 
 	 * Clears terminal window (doesn't work for IDE console)
 	 */
-	private void clearScreen() {
+	public static void clearScreen() {
 		out.print("\033[H\033[2J");
 		out.flush();
 	}

@@ -56,5 +56,9 @@ public class InputHandler {
 		}
 		return choice;
 	}
+	
+	public void closeScanner() {
+		if (scan != null) scan.close();
+	}
 
 }
