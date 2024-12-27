@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Menu {
 	private Scanner scan;
-	private PathHandler pathHandler;
+	private InputHandler inputHandler;
 	private boolean keepRunning = true;
 	// App configuration instance variables with default values
 	private String embeddingsFilePath = "../word-embeddings.txt";
@@ -18,7 +18,7 @@ public class Menu {
 
 	public Menu() {
 		this.scan = new Scanner(System.in);
-		this.pathHandler = new PathHandler();
+		this.inputHandler = new InputHandler();
 	}
 
 	// Start the application
@@ -43,7 +43,7 @@ public class Menu {
 			case 2 -> setInputPath();
 			case 3 -> setOutputPath();
 			case 4 -> setCommonWordsPath();
-			case 5 -> setComparisonAlgo();
+			case 5 -> setComparisonAlgorithm();
 			case 6 -> startProcessing();
 			case 7 -> keepRunning = false;
 			default -> errorMsg = "Unexpected value: " + choice;
@@ -59,21 +59,21 @@ public class Menu {
 	private void setEmbeddingsPath() {
 		clearScreen();
 		out.print("Please specify the file path and name of the word embeddings file > ");
-		embeddingsFilePath = pathHandler.setPath(embeddingsFilePath);
+		embeddingsFilePath = inputHandler.setPath(embeddingsFilePath);
 	}
 
 	// Prompt for an input file path that holds text to be simplified
 	private void setInputPath() {
 		clearScreen();
 		out.print("Please enter the file path and name of a text file to be simplified > ");
-		inputFilePath = pathHandler.setPath(inputFilePath);
+		inputFilePath = inputHandler.setPath(inputFilePath);
 	}
 
 	// Prompt for an output file path that stores simplified text
 	private void setOutputPath() {
 		clearScreen();
 		out.print("Please enter the file path and name of a file where the results should be saved > ");
-		outputFilePath = pathHandler.setPath(outputFilePath);
+		outputFilePath = inputHandler.setPath(outputFilePath);
 	}
 
 	// Prompt for a file that holds most common words in English
@@ -81,11 +81,11 @@ public class Menu {
 		clearScreen();
 		out.print(
 				"Please enter the file path and name of a file that holds a list of most common words used in English > ");
-		commonWordsFilePath = pathHandler.setPath(commonWordsFilePath);
+		commonWordsFilePath = inputHandler.setPath(commonWordsFilePath);
 	}
 
 	// Define an algoritham used to calculate distance between vectors
-	private void setComparisonAlgo() {
+	private void setComparisonAlgorithm() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE_BOLD);
 		out.println("Select Vector Comparison Algorithm");
@@ -97,25 +97,7 @@ public class Menu {
 		out.println("(4) Combine All");
 		out.println();
 
-		int choice = 0;
-		while (true) {
-			out.print(ConsoleColour.WHITE_BOLD + "Select Option (1-4) > ");
-			try {
-				choice = Integer.parseInt(scan.nextLine());
-				if (choice >= 1 && choice <= 4)
-					break;
-				out.println(ConsoleColour.RED + "Invalid input! Please try again.");
-			} catch (Exception e) {
-				out.println(ConsoleColour.RED + "Invalid input! Please try again.");
-			}
-		}
-		// Set comparison algorithm based on user input
-		switch (choice) {
-		case 1 -> vectorComparisonAlgo = "Dot Product";
-		case 2 -> vectorComparisonAlgo = "Euclidean Distance";
-		case 3 -> vectorComparisonAlgo = "Cosine Similarity";
-		default -> vectorComparisonAlgo = "Combine All (Cosine Similarity, Euclidean Distance, Dot Product)";
-		}
+		vectorComparisonAlgo = inputHandler.selectComparisonAlgorithm();
 	}
 
 	private void startProcessing() {
