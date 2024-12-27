@@ -21,23 +21,13 @@ public class Menu {
 		this.inputHandler = new InputHandler();
 	}
 
+	
 	// Start the application
 	public void startApplication() {
 		while (keepRunning) {
-			int choice;
-			// Display an error message and reprompt for invalid input
-			while (true) {
-				showOptions();
-				try {
-					choice = Integer.parseInt(scan.nextLine());
-					if (choice >= 1 && choice <= 7) {
-						break;
-					}
-					errorMsg = "Invalid Selection! Please use one of the options above";
-				} catch (Exception e) {
-					errorMsg = "Invalid Selection! Please use one of the options above";
-				}
-			}
+			showOptions();
+			int choice = inputHandler.processMenuSelection();
+			
 			switch (choice) {
 			case 1 -> setEmbeddingsPath();
 			case 2 -> setInputPath();
@@ -46,12 +36,11 @@ public class Menu {
 			case 5 -> setComparisonAlgorithm();
 			case 6 -> startProcessing();
 			case 7 -> keepRunning = false;
-			default -> errorMsg = "Unexpected value: " + choice;
+			default -> errorMsg = "Invalid Selection! Please use one of the options above";
 			}
+			
 		}
-		// Application closed - display goodbye message
 		out.println("Thank you for using Simplifying Text with Word Embeddings!");
-		// Close instance of Scanner
 		scan.close();
 	}
 
@@ -91,13 +80,13 @@ public class Menu {
 		out.println("Select Vector Comparison Algorithm");
 		out.print("**********************************");
 		out.println(ConsoleColour.WHITE);
-		out.println("(1) Dot Product");
+		out.println("(1) Cosine Similarity");
 		out.println("(2) Euclidean Distance");
-		out.println("(3) Cosine Similarity");
+		out.println("(3) Dot Product");
 		out.println("(4) Combine All");
 		out.println();
 
-		vectorComparisonAlgo = inputHandler.selectComparisonAlgorithm();
+		vectorComparisonAlgo = inputHandler.processAlgorithmSelection();
 	}
 
 	private void startProcessing() {
