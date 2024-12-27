@@ -2,69 +2,118 @@ package ie.atu.sw;
 
 import static java.lang.System.out;
 
+/**
+ * The ConfigHandler class manages configuration settings for the application.
+ * It initializes configuration with default values for file paths and vector
+ * comparison algorithm and provides methods for setting and retrieving
+ * configuration values.
+ */
 public class ConfigHandler {
 	private InputHandler inputHandler;
-	// App configuration instance variables with default values
 	private String embeddingsFilePath = "../word-embeddings.txt";
 	private String outputFilePath = "../output.txt";
 	private String inputFilePath = "../input.txt";
 	private String commonWordsFilePath = "../google-1000.txt";
 	private String vectorComparisonAlgo = "Cosine Similarity";
-	
+
+	/**
+	 * Instantiates ConfigHandler with the specified InputHandler instance.
+	 * 
+	 * @param inputHandler instance used for input and path validation
+	 */
 	public ConfigHandler(InputHandler inputHandler) {
 		this.inputHandler = inputHandler;
 	}
-	
+
+	/**
+	 * Retrieves the file path for the word embeddings file.
+	 * 
+	 * @return current file path for the word embeddings file
+	 */
 	public String getEmbeddingsFilePath() {
 		return embeddingsFilePath;
 	}
 
+	/**
+	 * Retrieves the file path for the output file.
+	 * 
+	 * @return current file path for the output file
+	 */
 	public String getOutputFilePath() {
 		return outputFilePath;
 	}
 
+	/**
+	 * Retrieves the file path for the input file.
+	 * 
+	 * @return current file path for the input file
+	 */
 	public String getInputFilePath() {
 		return inputFilePath;
 	}
 
+	/**
+	 * Retrieves the file path for the common words file.
+	 * 
+	 * @return current file path for the common words file
+	 */
 	public String getCommonWordsFilePath() {
 		return commonWordsFilePath;
 	}
 
+	/**
+	 * Retrieves selected vector comparison algorithm.
+	 * 
+	 * @return the name of the currently selected vector comparison algorithm
+	 */
 	public String getVectorComparisonAlgo() {
 		return vectorComparisonAlgo;
 	}
-	
-	private String promptForPath(String promptMessage, String currentPath) {
-		Menu.clearScreen();
-		out.print(promptMessage);
-		return inputHandler.setPath(currentPath);
-	}
-	
-	// Prompt for a file path to the word embeddings file
+
+	/**
+	 * Prompts user to specify the file path for the word embedding file. Updates
+	 * <b>embeddingsFilePath</b> with the user's input.
+	 */
 	public void setEmbeddingsPath() {
-		embeddingsFilePath = promptForPath("Please specify the file path and name of the word embeddings file > ", embeddingsFilePath);
+		embeddingsFilePath = promptForPath("Please specify the file path and name of the word embeddings file > ",
+				embeddingsFilePath);
 	}
 
-	// Prompt for an input file path that holds text to be simplified
+	/**
+	 * Prompts user to specify the file path for the input file. Updates
+	 * <b>inputFilePath</b> with the user's input.
+	 */
 	public void setInputPath() {
-		inputFilePath = promptForPath("Please enter the file path and name of a text file to be simplified > ", inputFilePath);
+		inputFilePath = promptForPath("Please enter the file path and name of a text file to be simplified > ",
+				inputFilePath);
 	}
 
-	// Prompt for an output file path that stores simplified text
+	/**
+	 * Prompts user to specify the file path for the output file. Updates
+	 * <b>outputFilePath</b> with the user's input.
+	 */
 	public void setOutputPath() {
-		outputFilePath = promptForPath("Please enter the file path and name of a file where the results should be saved > ", outputFilePath);
+		outputFilePath = promptForPath(
+				"Please enter the file path and name of a file where the results should be saved > ", outputFilePath);
 	}
 
-	// Prompt for a file that holds most common words in English
+	/**
+	 * Prompts user to specify the file path for the common words file. Updates
+	 * <b>commonWordsFilePath</b> with the user's input.
+	 */
 	public void setCommonWordsPath() {
-		commonWordsFilePath = promptForPath("Please enter the file path and name of a file that holds a list of most common words used in English > ", commonWordsFilePath);
+		commonWordsFilePath = promptForPath(
+				"Please enter the file path and name of a file that holds a list of most common words used in English > ",
+				commonWordsFilePath);
 	}
-	
-	// Define an algoritham used to calculate distance between vectors
+
+	/**
+	 * Allows selection of a vector comparison algorithm. Updates
+	 * <b>vectorCompariosnAlgo</b> based on user's choice.
+	 */
 	public void setComparisonAlgorithm() {
 		int choice = inputHandler.processAlgorithmSelection();
-		
+
 		switch (choice) {
 		case 1 -> {
 			vectorComparisonAlgo = "Cosine Similarity";
@@ -73,11 +122,24 @@ public class ConfigHandler {
 			vectorComparisonAlgo = "Euclidean Distance";
 		}
 		case 3 -> {
-			vectorComparisonAlgo ="Dot Product";
+			vectorComparisonAlgo = "Dot Product";
 		}
 		default -> {
 			vectorComparisonAlgo = "Combine All (Cosine Similarity, Euclidean Distance, Dot Product)";
 		}
 		}
+	}
+
+	/**
+	 * Prompts user for a new file path and validates the input.
+	 * 
+	 * @param promptMessage the message displayed to the user
+	 * @param currentPath   currently set file path
+	 * @return new file path if user input is valid, or the currentPath otherwise
+	 */
+	private String promptForPath(String promptMessage, String currentPath) {
+		Menu.clearScreen();
+		out.print(promptMessage);
+		return inputHandler.setPath(currentPath);
 	}
 }
