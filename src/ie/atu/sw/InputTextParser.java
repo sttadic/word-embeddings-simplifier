@@ -17,5 +17,5 @@ public class InputTextParser implements FileParser<List<String>>{
 			}
 		}
 		return inputTextList;
-	}y
+	}
 }
