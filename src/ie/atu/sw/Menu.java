@@ -27,6 +27,7 @@ public class Menu {
 	 * user input and handles selected option until user quits or application
 	 * completes.
 	 */
+	// O(n) where n is number of iterations (or user inputs)
 	public void startApplication() {
 		while (keepRunning) {
 			showOptions();
@@ -42,6 +43,7 @@ public class Menu {
 	 * 
 	 * @param choice the user's input associated with menu option
 	 */
+	// O(n) since case selected (method invoked) in the worst case scenario is linear
 	private void handleChoice(int choice) {
 		switch (choice) {
 		case 1 -> configHandler.setEmbeddingsPath();
@@ -59,6 +61,7 @@ public class Menu {
 	 * Prompts the user to select a vector comparison algorithm and delegates
 	 * selection to the ConfigHandler to set the chosen algorithm.
 	 */
+	// O(n) since setComparisonAlgorithm() from ConfigHandler is linear
 	private void comparisonAlgorithmSelection() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE_BOLD);
@@ -79,6 +82,7 @@ public class Menu {
 	 * settings. It also displays an error message if an error occurs during the
 	 * application execution."
 	 */
+	// O(1) since all operations in a method are constant time operations
 	private void showOptions() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE);
@@ -124,6 +128,7 @@ public class Menu {
 	 * consoles. Source:
 	 * https://intellipaat.com/community/294/java-clear-the-console
 	 */
+	// O(1) - all constant time operations in a method
 	public static void clearScreen() {
 		out.print("\033[H\033[2J");
 		out.flush();
