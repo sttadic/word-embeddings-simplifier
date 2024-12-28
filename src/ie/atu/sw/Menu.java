@@ -43,7 +43,7 @@ public class Menu {
 	 * 
 	 * @param choice the user's input associated with menu option
 	 */
-	// O(n) since case selected (method invoked) in the worst case scenario is linear
+	// O(n) since case selected (method invoked) is linear in the worst case scenario
 	private void handleChoice(int choice) {
 		switch (choice) {
 		case 1 -> configHandler.setEmbeddingsPath();
@@ -51,7 +51,11 @@ public class Menu {
 		case 3 -> configHandler.setOutputPath();
 		case 4 -> configHandler.setCommonWordsPath();
 		case 5 -> comparisonAlgorithmSelection();
-		case 6 -> keepRunning = false; // Start of processing to be implemented
+		case 6 -> {
+			var config = configHandler.generateConfig();
+			new SimplifierManager(config).startProcessing();
+			keepRunning = false;
+			}
 		case 7 -> keepRunning = false;
 		default -> errorMsg = "Invalid Selection! Please use one of the options above";
 		}
