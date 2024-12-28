@@ -25,7 +25,7 @@ public class WordEmbeddingsParser implements FileParser<Map<String, double[]>>{
 			double[] vector = Arrays.stream(parts, 1, parts.length)
 									.mapToDouble(Double::parseDouble)
 									.toArray();
-			embeddingsMap.putIfAbsent(line, vector);
+			embeddingsMap.putIfAbsent(parts[0], vector);
 		}
 	}
 }
