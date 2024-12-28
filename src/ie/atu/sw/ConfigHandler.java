@@ -153,4 +153,21 @@ public class ConfigHandler {
 		out.print(promptMessage);
 		return inputHandler.setPath(currentPath);
 	}
+
+	/**
+	 * Creates and returns a SimplifierConfig object with current configuration
+	 * values.
+	 * 
+	 * @return SimplifierConfig instance that encapsulates current configuration
+	 */
+	// O(1) - creating an instance and returning are constant time operations
+	public SimplifierConfig generateConfig() {
+		return new SimplifierConfig(
+				embeddingsFilePath, 
+				inputFilePath, 
+				outputFilePath, 
+				commonWordsFilePath,
+				vectorComparisonAlgo
+		);
+	}
 }
