@@ -19,6 +19,10 @@ public class InputTextParser implements FileParser<List<Map.Entry<String, Boolea
 			while((line = br.readLine()) != null) {
 				tokens.addAll(tokanizer.tokenize(line));
 			}
+		} catch (FileNotFoundException e) {
+			throw new IOException("Input text file not found: " + filePath);
+		} catch (IOException e) {
+			throw new IOException("Error reading text from file: " + filePath);
 		}
 		return tokens;
 	}
