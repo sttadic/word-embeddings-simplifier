@@ -13,6 +13,6 @@ public class Runner {
 	 * @param args command line arguments
 	 */
 	public static void main(String[] args) {
-		new Menu().startApplication();
+		new Menu().runApplication();
 	}
 }

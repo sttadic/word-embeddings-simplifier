@@ -28,13 +28,13 @@ public class Menu {
 	 * completes.
 	 */
 	// O(n) where n is number of iterations (or user inputs)
-	public void startApplication() {
+	public void runApplication() {
 		while (keepRunning) {
 			showOptions();
 			handleChoice(inputHandler.processMenuSelection());
 		}
 		inputHandler.closeScanner();
-		out.println("Thank you for using Simplifying Text with Word Embeddings!");
+		out.println("\nThank you for using Text Simplifier!\n");
 	}
 
 	/**
@@ -55,7 +55,9 @@ public class Menu {
 			var config = configHandler.generateConfig();
 			new SimplifierManager(config).startProcessing();
 			keepRunning = false;
-			}
+			out.println("\nProcessing complete! Your simplified text has been saved to: " + ConsoleColour.GREEN 
+					+ configHandler.getOutputFilePath() + ConsoleColour.WHITE);
+		}
 		case 7 -> keepRunning = false;
 		default -> errorMsg = "Invalid Selection! Please use one of the options above";
 		}
