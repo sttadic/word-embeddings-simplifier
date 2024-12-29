@@ -53,7 +53,8 @@ public class Menu {
 		case 5 -> comparisonAlgorithmSelection();
 		case 6 -> {
 			var config = configHandler.generateConfig();
-			new SimplifierManager(config).startProcessing();
+			// Singleton pattern - ensure only one instance of SimplifierManager is used
+			SimplifierManager.getInstance(config).startProcessing();
 			keepRunning = false;
 			out.println("\nProcessing complete! Your simplified text has been saved to: " + ConsoleColour.GREEN 
 					+ configHandler.getOutputFilePath() + ConsoleColour.WHITE);
