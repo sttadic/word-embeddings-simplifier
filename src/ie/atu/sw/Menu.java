@@ -43,7 +43,7 @@ public class Menu {
 	 * 
 	 * @param choice the user's input associated with menu option
 	 */
-	// O(n) since case selected (method invoked) is linear in the worst case scenario
+	// O(n^2) since case selected (method invoked) is quadratic in the worst case
 	private void handleChoice(int choice) {
 		switch (choice) {
 		case 1 -> configHandler.setEmbeddingsPath();

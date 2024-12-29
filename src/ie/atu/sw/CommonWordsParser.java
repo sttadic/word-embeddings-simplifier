@@ -17,7 +17,7 @@ public class CommonWordsParser implements FileParser<Set<String>> {
 	 * @return a set of common words
 	 * @throws IOException if the file cannot be found or read
 	 */
-	// O(n) - loops over each line of a file
+	// O(n) - loops over n lines of a file
 	@Override
 	public Set<String> parse(String filePath) throws IOException {
 		var commonWords = new HashSet<String>();

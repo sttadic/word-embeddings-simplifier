@@ -11,6 +11,7 @@ import java.io.IOException;
  * @param <T> the type of object (collection) that will store parsed data
  */
 public interface FileParser<T> {
+	
 	/**
 	 * Parses the content of a file and returns data in specified format.
 	 * 

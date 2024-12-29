@@ -17,7 +17,7 @@ public class WordEmbeddingsParser implements FileParser<Map<String, double[]>>{
 	 * @return a map where the key is a word and value is an array of emmedding values
 	 * @throws IOException if the file cannot be found or read
 	 */
-	// O(n^2) - loops over all lines and for each line calles processLine() which is linear
+	// O(n^2) - loops over n lines and for each line calles processLine() which is linear
 	@Override
 	public Map<String, double[]> parse(String filePath) throws IOException {
 		Map<String, double[]> embeddingsMap = new HashMap<>();

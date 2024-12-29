@@ -16,7 +16,7 @@ public class Tokenizer {
 	 * @return a list of tokens paired with a boolean indicating if it's a text or
 	 *         non-text
 	 */
-	// O(n) - iterates over each character of a char array (line)
+	// O(n) - iterates over n characters of a char array (line)
 	public List<Map.Entry<String, Boolean>> tokenize(String line) {
 		var lineTokens = new ArrayList<Map.Entry<String, Boolean>>();
 		var token = new StringBuilder();
