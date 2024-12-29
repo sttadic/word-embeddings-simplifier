@@ -27,7 +27,7 @@ public class Menu {
 	 * user input and handles selected option until user quits or application
 	 * completes.
 	 */
-	// O(n) where n is number of iterations (or user inputs)
+	// O(n) where n is number of loops based on number of user inputs
 	public void runApplication() {
 		while (keepRunning) {
 			showOptions();
@@ -43,7 +43,7 @@ public class Menu {
 	 * 
 	 * @param choice the user's input associated with menu option
 	 */
-	// O(n^2) since case selected (method invoked) is quadratic in the worst case
+	// O(1) due to constant time operations within each case (invoking methods)
 	private void handleChoice(int choice) {
 		switch (choice) {
 		case 1 -> configHandler.setEmbeddingsPath();
@@ -67,7 +67,7 @@ public class Menu {
 	 * Prompts the user to select a vector comparison algorithm and delegates
 	 * selection to the ConfigHandler to set the chosen algorithm.
 	 */
-	// O(n) since setComparisonAlgorithm() from ConfigHandler is linear
+	// O(1) - all constant time operations
 	private void comparisonAlgorithmSelection() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE_BOLD);

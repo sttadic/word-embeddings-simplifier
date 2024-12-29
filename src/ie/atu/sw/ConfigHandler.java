@@ -79,7 +79,7 @@ public class ConfigHandler {
 	 * Prompts user to specify the file path for the word embedding file. Updates
 	 * <b>embeddingsFilePath</b> with the user's input.
 	 */
-	// O(n) - promptForPath() mehod has linear time complexity
+	// O(1) - all operations are constant time
 	public void setEmbeddingsPath() {
 		embeddingsFilePath = promptForPath("Please specify the file path and name of the word embeddings file > ",
 				embeddingsFilePath);
@@ -89,7 +89,7 @@ public class ConfigHandler {
 	 * Prompts user to specify the file path for the input file. Updates
 	 * <b>inputFilePath</b> with the user's input.
 	 */
-	// O(n) - promptForPath() mehod has linear time complexity
+	// O(1) - all operations are constant time
 	public void setInputPath() {
 		inputFilePath = promptForPath("Please enter the file path and name of a text file to be simplified > ",
 				inputFilePath);
@@ -99,7 +99,7 @@ public class ConfigHandler {
 	 * Prompts user to specify the file path for the output file. Updates
 	 * <b>outputFilePath</b> with the user's input.
 	 */
-	// O(n) - promptForPath() mehod has linear time complexity
+	// O(1) - all operations are constant time
 	public void setOutputPath() {
 		outputFilePath = promptForPath(
 				"Please enter the file path and name of a file where the results should be saved > ", outputFilePath);
@@ -109,7 +109,7 @@ public class ConfigHandler {
 	 * Prompts user to specify the file path for the common words file. Updates
 	 * <b>commonWordsFilePath</b> with the user's input.
 	 */
-	// O(n) - promptForPath() mehod has linear time complexity
+	// O(1) - all operations are constant time
 	public void setCommonWordsPath() {
 		commonWordsFilePath = promptForPath(
 				"Please enter the file path and name of a file that holds a list of most common words used in English > ",
@@ -120,7 +120,7 @@ public class ConfigHandler {
 	 * Allows selection of a vector comparison algorithm. Updates
 	 * <b>vectorCompariosnAlgo</b> based on user's choice.
 	 */
-	// O(n) since processAlgorithmSelection() has linear time complexity
+	// O(1) - all operations are constant time
 	public void setComparisonAlgorithm() {
 		int choice = inputHandler.processAlgorithmSelection();
 
@@ -147,7 +147,7 @@ public class ConfigHandler {
 	 * @param currentPath   currently set file path
 	 * @return new file path if user input is valid, or the currentPath otherwise
 	 */
-	// O(n) since setPath() method from InputHandler is linear
+	// O(1) - all operations are constant time
 	private String promptForPath(String promptMessage, String currentPath) {
 		Menu.clearScreen();
 		out.print(promptMessage);

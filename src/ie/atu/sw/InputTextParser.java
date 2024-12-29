@@ -28,7 +28,7 @@ public class InputTextParser implements FileParser<List<Map.Entry<String, Boolea
 	 *         if it's a word or not
 	 * @throws IOException if file cannot be found or read
 	 */
-	// O(n^2) - iterates over n lines and for each line calles tokenize() which is linear
+	// O(n) - iterates over n number of lines
 	@Override
 	public List<Map.Entry<String, Boolean>> parse(String filePath) throws IOException {
 		var tokens = new ArrayList<Map.Entry<String, Boolean>>();
