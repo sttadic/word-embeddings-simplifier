@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class SimplifierManager {
 	private static SimplifierManager instance;
-	private final SimplifierConfig config;
+	private SimplifierConfig config;
 	private final Tokenizer tokanizer;
 
 	public SimplifierManager(SimplifierConfig config) {
@@ -14,8 +14,16 @@ public class SimplifierManager {
 	}
 
 	public static SimplifierManager getInstance(SimplifierConfig config) {
-		if (instance == null) instance = new SimplifierManager(config);
+		if (instance == null) {
+			instance = new SimplifierManager(config);
+		} else {
+			instance.setConfig(config);
+		}
 		return instance;
+	}
+	
+	private void setConfig(SimplifierConfig newConfig) {
+		this.config = newConfig;
 	}
 
 	public void simplify() throws Exception {
