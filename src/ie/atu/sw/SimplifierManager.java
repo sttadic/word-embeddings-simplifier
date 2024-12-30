@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class SimplifierManager {
 	private static SimplifierManager instance;
-	private SimplifierConfig config;
 	private final Tokenizer tokanizer;
+	private SimplifierConfig config;
 
 	public SimplifierManager(SimplifierConfig config) {
 		this.config = config;
@@ -17,24 +17,27 @@ public class SimplifierManager {
 		if (instance == null) {
 			instance = new SimplifierManager(config);
 		} else {
+			// Set new configuration (e.g. updated file paths)
 			instance.setConfig(config);
 		}
 		return instance;
 	}
-	
+
 	private void setConfig(SimplifierConfig newConfig) {
 		this.config = newConfig;
 	}
 
 	public void simplify() throws Exception {
-		var wordEmbeddingsMap = new WordEmbeddingsParser().parse(config.embeddingsFilePath());
-		var commonWordsEmbeddings = generateCommonEmbed(wordEmbeddingsMap);
-		var inputTextList = new InputTextParser(tokanizer).parse(config.inputFilePath());
-		
+		var embedMap = new WordEmbeddingsParser().parse(config.embeddingsFilePath());
+		var commonEmbedMap = generateCommonEmbeddings(embedMap);
+		var toSimplifyList = new InputTextParser(tokanizer).parse(config.inputFilePath());
+
+		new SimplificationCoordinator(embedMap, commonEmbedMap, toSimplifyList, config.vectorComparisonAlgo());
 	}
 
-	private Map<String, double[]> generateCommonEmbed(Map<String, double[]> embeddings) throws IOException {
+	private Map<String, double[]> generateCommonEmbeddings(Map<String, double[]> embeddings) throws IOException {
 		var commonWordsSet = new CommonWordsParser().parse(config.commonWordsFilePath());
 		return WordVectorAssigner.assignVectors(commonWordsSet, embeddings);
 	}
+
 }
