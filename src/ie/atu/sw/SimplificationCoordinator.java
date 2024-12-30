@@ -12,13 +12,14 @@ public class SimplificationCoordinator {
 		this.toSimplifyList = toSimplifyList;
 	}
 
-	public void coordinateSimplification(Map<String, double[]> embedMap, String comparisonAlg) {
+	public void coordinateSimplification(Map<String, double[]> embedMap, SimplifierConfig config) {
 		toSimplifyList.forEach(e -> {
-			String word = e.getKey();
-			if (e.getValue() && !commonEmbedMap.containsKey(word)) {
-				// word = get the most similar word by running vector comparison algorithms
+			String token = e.getKey();
+			if (e.getValue() && !commonEmbedMap.containsKey(token)) {
+				// token = get the most similar word by running vector comparison algorithms
+				// (embedMap, config.vectorComparisonAlgo())
 			}
-			// write the word
+			// write the token (token, config.getOutputFilePath())
 		});
 	}
 }

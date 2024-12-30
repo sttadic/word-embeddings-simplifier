@@ -33,7 +33,7 @@ public class SimplifierManager {
 		var toSimplifyList = new InputTextParser(tokanizer).parse(config.inputFilePath());
 
 		var simCoordinator = new SimplificationCoordinator(commonEmbedMap, toSimplifyList);
-		simCoordinator.coordinateSimplification(embedMap, config.vectorComparisonAlgo());
+		simCoordinator.coordinateSimplification(embedMap, config);
 	}
 
 	private Map<String, double[]> generateCommonEmbeddings(Map<String, double[]> embeddings) throws IOException {
