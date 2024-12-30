@@ -32,8 +32,8 @@ public class SimplifierManager {
 		var commonEmbedMap = generateCommonEmbeddings(embedMap);
 		var toSimplifyList = new InputTextParser(tokanizer).parse(config.inputFilePath());
 
-		var simCoordinator = new SimplificationCoordinator(embedMap, commonEmbedMap, toSimplifyList);
-		simCoordinator.coordinateSimplification(config.vectorComparisonAlgo());
+		var simCoordinator = new SimplificationCoordinator(commonEmbedMap, toSimplifyList);
+		simCoordinator.coordinateSimplification(embedMap, config.vectorComparisonAlgo());
 	}
 
 	private Map<String, double[]> generateCommonEmbeddings(Map<String, double[]> embeddings) throws IOException {
