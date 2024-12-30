@@ -74,7 +74,8 @@ public class SimplifierManager {
 
 	/**
 	 * Generates a map of common word embeddings by extracting relevant vectors from
-	 * the full set of word embeddings.
+	 * the map of word emgeddings where key is the word and value is its vector
+	 * representation.
 	 * 
 	 * @param embeddings the full set of word embeddings
 	 * @return a map of common word embeddings

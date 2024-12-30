@@ -39,7 +39,7 @@ public class SimplificationCoordinator {
 	 * @param config   the configuration setting for the simplification process
 	 * @throws IOException if an error occures while writing to the output file
 	 */
-	// O(n^2) - loops over n number of tokens * containsKey() is O(n) in worst case
+	// O(n^2) - loops over n number of tokens and performs lookup in a map of size m
 	public void coordinateSimplification(Map<String, double[]> embedMap, SimplifierConfig config) throws IOException {
 		try (OutputWriter outputWriter = new OutputWriter(config.outputFilePath())) {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
