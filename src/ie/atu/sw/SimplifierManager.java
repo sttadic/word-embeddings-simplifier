@@ -3,18 +3,12 @@ package ie.atu.sw;
 public class SimplifierManager {
 	private static SimplifierManager instance;
 	private final SimplifierConfig config;
-	private final WordEmbeddingsParser wordEmbeddingsParser;
-	private final InputTextParser inputTextParser;
-	private final CommonWordsParser commonWordsParser;
 	private final Tokenizer tokanizer;
 	
 	
 	public SimplifierManager(SimplifierConfig config) {
 		this.config = config;
 		this.tokanizer = new Tokenizer();
-		this.wordEmbeddingsParser = new WordEmbeddingsParser();
-		this.inputTextParser = new InputTextParser(tokanizer);
-		this.commonWordsParser = new CommonWordsParser();
 	}
 	
 	public static SimplifierManager getInstance(SimplifierConfig config) {
@@ -22,7 +16,9 @@ public class SimplifierManager {
 		return instance;
 	}
 	
-	public void startProcessing() {
-		
+	public void simplify() throws Exception {
+		var wordEmbeddingsMap = new WordEmbeddingsParser().parse(config.embeddingsFilePath());
+		var commonWordsSet = new CommonWordsParser().parse(config.commonWordsFilePath());
+		var inputTextList = new InputTextParser(tokanizer).parse(config.inputFilePath());
 	}
 }

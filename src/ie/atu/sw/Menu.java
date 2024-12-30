@@ -51,14 +51,7 @@ public class Menu {
 		case 3 -> configHandler.setOutputPath();
 		case 4 -> configHandler.setCommonWordsPath();
 		case 5 -> comparisonAlgorithmSelection();
-		case 6 -> {
-			var config = configHandler.generateConfig();
-			// Singleton pattern - ensure only one instance of SimplifierManager is used
-			SimplifierManager.getInstance(config).startProcessing();
-			keepRunning = false;
-			out.println("\nProcessing complete! Your simplified text has been saved to: " + ConsoleColour.GREEN 
-					+ configHandler.getOutputFilePath() + ConsoleColour.WHITE);
-		}
+		case 6 -> startProcessing();
 		case 7 -> keepRunning = false;
 		default -> errorMsg = "Invalid Selection! Please use one of the options above";
 		}
@@ -82,6 +75,32 @@ public class Menu {
 		out.println();
 
 		configHandler.setComparisonAlgorithm();
+	}
+
+	/**
+	 * Initiates the text simplification process using the current configuration
+	 * settings.
+	 * 
+	 * This method generates a configuration object based on user input collected
+	 * through menu options and passes it to the SimplifierManager. If any error
+	 * occurs during process, an error message is displayed. Upon successful
+	 * completion, the output file path is displayed and application exits.
+	 * 
+	 * @throws Exception for any unexpected error during the simplification process
+	 */
+	// O(1) - all constant time operations
+	private void startProcessing() {
+		var config = configHandler.generateConfig();
+		try {
+			// Singleton pattern - ensure only one instance of SimplifierManager is used
+			SimplifierManager.getInstance(config).simplify();
+		} catch (Exception e) {
+			errorMsg = e.getMessage();
+			return;
+		}
+		keepRunning = false;
+		out.println("\nProcessing complete! Your simplified text has been saved to: " + ConsoleColour.GREEN
+				+ configHandler.getOutputFilePath() + ConsoleColour.WHITE);
 	}
 
 	/**
@@ -132,8 +151,7 @@ public class Menu {
 
 	/**
 	 * Clears the terminal screen. Does not work in all environments like IDE
-	 * consoles. Source:
-	 * https://intellipaat.com/community/294/java-clear-the-console
+	 * consoles.
 	 */
 	// O(1) - all constant time operations in a method
 	public static void clearScreen() {
