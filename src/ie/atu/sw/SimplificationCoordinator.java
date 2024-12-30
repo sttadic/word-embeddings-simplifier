@@ -1,5 +1,6 @@
 package ie.atu.sw;
 
+import java.io.IOException;
 import java.util.*;
 
 public class SimplificationCoordinator {
@@ -12,14 +13,18 @@ public class SimplificationCoordinator {
 		this.toSimplifyList = toSimplifyList;
 	}
 
-	public void coordinateSimplification(Map<String, double[]> embedMap, SimplifierConfig config) {
-		toSimplifyList.forEach(e -> {
-			String token = e.getKey();
-			if (e.getValue() && !commonEmbedMap.containsKey(token)) {
-				// token = get the most similar word by running vector comparison algorithms
-				// (embedMap, config.vectorComparisonAlgo())
+	public void coordinateSimplification(Map<String, double[]> embedMap, SimplifierConfig config) throws IOException {
+		try (OutputWriter outputWriter = new OutputWriter(config.outputFilePath())) {
+			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
+				String token = entry.getKey();
+				if (entry.getValue() && !commonEmbedMap.containsKey(token)) {
+					// token = get the most similar word by running vector comparison algorithms
+					// (embedMap, config.vectorComparisonAlgo())
+				}
+				outputWriter.write(token);
 			}
-			// write the token (token, config.getOutputFilePath())
-		});
+		} catch (IOException e) {
+			throw new IOException("Error writing to the file: " + config.outputFilePath());
+		}
 	}
 }
