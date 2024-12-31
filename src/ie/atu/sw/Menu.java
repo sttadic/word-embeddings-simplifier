@@ -3,8 +3,8 @@ package ie.atu.sw;
 import static java.lang.System.out;
 
 /**
- * The class {@code Menu} serves as the main user interface. It introduces
- * configuration options and commands to the user and facilitates the selection
+ * The class {@code Menu} serves as the main user interface, presenting
+ * configuration options and commands to the user. It facilitates the selection
  * of paths, algorithms, and settings required for text simplification by
  * delegating tasks to appropriate handlers based on user input.
  */
