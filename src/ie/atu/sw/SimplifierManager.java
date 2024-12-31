@@ -84,7 +84,7 @@ public class SimplifierManager {
 	// O(1) - all constatnt time operations
 	private Map<String, double[]> generateCommonEmbeddings(Map<String, double[]> embeddings) throws IOException {
 		var commonWordsSet = new CommonWordsParser().parse(config.commonWordsFilePath());
-		return WordVectorAssigner.assignVectors(commonWordsSet, embeddings);
+		return VectorUtils.assignVectors(commonWordsSet, embeddings);
 	}
 
 }
