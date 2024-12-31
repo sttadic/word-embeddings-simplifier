@@ -3,10 +3,10 @@ package ie.atu.sw;
 import static java.lang.System.out;
 
 /**
- * The class {@code Menu} serves as the main user interface and controls the 
- * flow of application. It displays varoius menu options, selected paths and 
- * algorithms to the user and initiates processing based on user's 
- * configuration.
+ * The class {@code Menu} serves as the main user interface. It introduces
+ * configuration options and commands to the user and facilitates the selection
+ * of paths, algorithms, and settings required for text simplification by
+ * delegating tasks to appropriate handlers based on user input.
  */
 public class Menu {
 	private InputHandler inputHandler;
@@ -109,7 +109,7 @@ public class Menu {
 	 * settings. It also displays an error message if an error occurs during the
 	 * application execution."
 	 */
-	// O(1) all operations in a method are constant time operations
+	// O(1) all operations in a method are constant time
 	private void showOptions() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE);
