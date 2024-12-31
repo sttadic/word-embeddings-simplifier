@@ -1,7 +1,24 @@
 package ie.atu.sw;
 
+/**
+ * The {@code EuclideanDistance} class implements {@link VectorSimilarity}
+ * interface to calculate the Euclidean distance between two vectors.
+ * 
+ * <p>
+ * Euclidean distance is the straight-line distance between two points in a
+ * multi-dimensional space.
+ * </p>
+ */
 public class EuclideanDistance implements VectorSimilarity {
-
+	
+	/**
+	 * Computes the Euclidean distance between two vectors.
+	 * 
+	 * @param vector1 the first vector
+	 * @param vector2 the second vector
+	 * @return the Euclidean distance score
+	 */
+	// O(n) iterates once over both vectors where n is length of a vector
 	@Override
 	public double compare(double[] vector1, double[] vector2) {
 		double sum = 0.0;

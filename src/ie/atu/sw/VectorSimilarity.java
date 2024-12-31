@@ -1,8 +1,14 @@
 package ie.atu.sw;
 
 /**
- * The {@code VectorSimilarity} interface defines a contract for all vector
- * similarity search algorithms to follow.
+ * The {@code VectorSimilarity} interface defines a contract for algorithms that
+ * calculate similarity or distance between two vectors.
+ * 
+ * <p>
+ * Implementing classes must provide their own definition of the {@code compare}
+ * method for specific vector comparison algorithms. Vectors must be of equal
+ * length.
+ * </p>
  */
 public interface VectorSimilarity {
 	/**
