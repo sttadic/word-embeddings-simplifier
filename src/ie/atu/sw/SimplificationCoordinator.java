@@ -8,7 +8,7 @@ import java.util.*;
  * of input text using word embeddings.
  * 
  * It identifies words requiring simplification, delegates finding of most
- * similar word using vector comparison algorithms and writing of the results to
+ * similar word using vector similarity algorithms and writing of the results to
  * the output file.
  */
 public class SimplificationCoordinator {
@@ -39,14 +39,14 @@ public class SimplificationCoordinator {
 	 * @param config   the configuration setting for the simplification process
 	 * @throws IOException if an error occures while writing to the output file
 	 */
-	// O(n^2) - loops over n number of tokens and performs lookup in a map of size m
+	// O(n^2) loops over n number of tokens and performs lookup in a map of size m
 	public void coordinateSimplification(Map<String, double[]> embedMap, SimplifierConfig config) throws IOException {
 		try (OutputWriter outputWriter = new OutputWriter(config.outputFilePath())) {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
 				String token = entry.getKey();
 				if (entry.getValue() && !commonEmbedMap.containsKey(token)) {
-					// token = get the most similar word by running vector comparison algorithms
-					// (embedMap, config.vectorComparisonAlgo())
+					// token = get the most similar word by running vector similarity algorithms
+					// (embedMap, config.vectorSimilarityAlg())
 				}
 				outputWriter.write(token);
 			}

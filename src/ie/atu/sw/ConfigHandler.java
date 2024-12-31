@@ -5,7 +5,7 @@ import static java.lang.System.out;
 /**
  * The ConfigHandler class manages configuration settings for the application.
  * It initializes configuration with default values for file paths and vector
- * comparison algorithm and provides methods for setting and retrieving
+ * similarity algorithm and provides methods for setting and retrieving
  * configuration values.
  */
 public class ConfigHandler {
@@ -14,7 +14,7 @@ public class ConfigHandler {
 	private String outputFilePath = "../output.txt";
 	private String inputFilePath = "../input.txt";
 	private String commonWordsFilePath = "../google-1000.txt";
-	private String vectorComparisonAlgo = "Cosine Similarity";
+	private String vectorSimilarityAlg = "Cosine Similarity";
 
 	/**
 	 * Instantiates ConfigHandler with the specified InputHandler instance.
@@ -30,7 +30,7 @@ public class ConfigHandler {
 	 * 
 	 * @return current file path for the word embeddings file
 	 */
-	// O(1) since return is constant time operation
+	// O(1) return is constant time operation
 	public String getEmbeddingsFilePath() {
 		return embeddingsFilePath;
 	}
@@ -40,7 +40,7 @@ public class ConfigHandler {
 	 * 
 	 * @return current file path for the output file
 	 */
-	// O(1) since return is constant time operation
+	// O(1) return is constant time operation
 	public String getOutputFilePath() {
 		return outputFilePath;
 	}
@@ -50,7 +50,7 @@ public class ConfigHandler {
 	 * 
 	 * @return current file path for the input file
 	 */
-	// O(1) since return is constant time operation
+	// O(1) return is constant time operation
 	public String getInputFilePath() {
 		return inputFilePath;
 	}
@@ -60,26 +60,26 @@ public class ConfigHandler {
 	 * 
 	 * @return current file path for the common words file
 	 */
-	// O(1) since return is constant time operation
+	// O(1) return is constant time operation
 	public String getCommonWordsFilePath() {
 		return commonWordsFilePath;
 	}
 
 	/**
-	 * Retrieves selected vector comparison algorithm.
+	 * Retrieves selected vector similarity algorithm.
 	 * 
-	 * @return the name of the currently selected vector comparison algorithm
+	 * @return the name of the currently selected vector similarity algorithm
 	 */
-	// O(1) since return is constant time operation
-	public String getVectorComparisonAlgo() {
-		return vectorComparisonAlgo;
+	// O(1) return is constant time operation
+	public String getVectorSimilarityAlg() {
+		return vectorSimilarityAlg;
 	}
 
 	/**
 	 * Prompts user to specify the file path for the word embedding file. Updates
 	 * <b>embeddingsFilePath</b> with the user's input.
 	 */
-	// O(1) - all operations are constant time
+	// O(1) all operations are constant time
 	public void setEmbeddingsPath() {
 		embeddingsFilePath = promptForPath("Please specify the file path and name of the word embeddings file > ",
 				embeddingsFilePath);
@@ -89,7 +89,7 @@ public class ConfigHandler {
 	 * Prompts user to specify the file path for the input file. Updates
 	 * <b>inputFilePath</b> with the user's input.
 	 */
-	// O(1) - all operations are constant time
+	// O(1) all operations are constant time
 	public void setInputPath() {
 		inputFilePath = promptForPath("Please enter the file path and name of a text file to be simplified > ",
 				inputFilePath);
@@ -99,7 +99,7 @@ public class ConfigHandler {
 	 * Prompts user to specify the file path for the output file. Updates
 	 * <b>outputFilePath</b> with the user's input.
 	 */
-	// O(1) - all operations are constant time
+	// O(1) all operations are constant time
 	public void setOutputPath() {
 		outputFilePath = promptForPath(
 				"Please enter the file path and name of a file where the results should be saved > ", outputFilePath);
@@ -109,7 +109,7 @@ public class ConfigHandler {
 	 * Prompts user to specify the file path for the common words file. Updates
 	 * <b>commonWordsFilePath</b> with the user's input.
 	 */
-	// O(1) - all operations are constant time
+	// O(1) all operations are constant time
 	public void setCommonWordsPath() {
 		commonWordsFilePath = promptForPath(
 				"Please enter the file path and name of a file that holds a list of most common words used in English > ",
@@ -117,25 +117,25 @@ public class ConfigHandler {
 	}
 
 	/**
-	 * Allows selection of a vector comparison algorithm. Updates
-	 * <b>vectorCompariosnAlgo</b> based on user's choice.
+	 * Allows selection of a vector similarity algorithm. Updates
+	 * <b>vectorSimilarityAlg</b> based on user's choice.
 	 */
-	// O(1) - all operations are constant time
-	public void setComparisonAlgorithm() {
+	// O(1) all operations are constant time
+	public void setSimilarityAlgorithm() {
 		int choice = inputHandler.processAlgorithmSelection();
 
 		switch (choice) {
 		case 1 -> {
-			vectorComparisonAlgo = "Cosine Similarity";
+			vectorSimilarityAlg = "Cosine Similarity";
 		}
 		case 2 -> {
-			vectorComparisonAlgo = "Euclidean Distance";
+			vectorSimilarityAlg = "Euclidean Distance";
 		}
 		case 3 -> {
-			vectorComparisonAlgo = "Dot Product";
+			vectorSimilarityAlg = "Dot Product";
 		}
 		default -> {
-			vectorComparisonAlgo = "Combine All (Cosine Similarity, Euclidean Distance, Dot Product)";
+			vectorSimilarityAlg = "Combine All (Cosine Similarity, Euclidean Distance, Dot Product)";
 		}
 		}
 	}
@@ -147,7 +147,7 @@ public class ConfigHandler {
 	 * @param currentPath   currently set file path
 	 * @return new file path if user input is valid, or the currentPath otherwise
 	 */
-	// O(1) - all operations are constant time
+	// O(1) all operations are constant time
 	private String promptForPath(String promptMessage, String currentPath) {
 		Menu.clearScreen();
 		out.print(promptMessage);
@@ -160,14 +160,14 @@ public class ConfigHandler {
 	 * 
 	 * @return SimplifierConfig instance that encapsulates current configuration
 	 */
-	// O(1) - creating an instance and returning are constant time operations
+	// O(1) creating an instance and returning are constant time operations
 	public SimplifierConfig generateConfig() {
 		return new SimplifierConfig(
 				embeddingsFilePath, 
 				inputFilePath, 
 				outputFilePath, 
 				commonWordsFilePath,
-				vectorComparisonAlgo
+				vectorSimilarityAlg
 		);
 	}
 }

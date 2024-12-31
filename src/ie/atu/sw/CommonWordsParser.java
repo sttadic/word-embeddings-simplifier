@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The class CommonWordsParser parses a file containing most common words in
- * English and stores them in a set. Each line in a file is expected to contain
- * a single word.
+ * The class {@code CommonWordsParser} implements the {@link FileParser} to
+ * parse a file containing most common words in English and stores them in a
+ * set. Each line in a file is expected to contain a single word.
  */
 public class CommonWordsParser implements FileParser<Set<String>> {
 
@@ -17,7 +17,7 @@ public class CommonWordsParser implements FileParser<Set<String>> {
 	 * @return a set of common words
 	 * @throws IOException if the file cannot be found or read
 	 */
-	// O(n) - loops over n number of lines from a file
+	// O(n) loops over n number of lines from a file
 	@Override
 	public Set<String> parse(String filePath) throws IOException {
 		var commonWords = new HashSet<String>();

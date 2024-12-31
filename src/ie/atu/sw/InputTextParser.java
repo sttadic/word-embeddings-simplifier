@@ -4,9 +4,11 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The InputTextParser class parses an input text file and tokenizes its
- * content. The tokenizer breaks lines into tokens, distinguishing between text
- * and punctuation.
+ * The {@code InputTextParser} class implements the {@link FileParser} interface
+ * to parse an input text file and tokenize its content.
+ * 
+ * The tokenizer breaks lines into tokens, distinguishing between text and
+ * punctuation.
  */
 public class InputTextParser implements FileParser<List<Map.Entry<String, Boolean>>> {
 	private final Tokenizer tokenizer;
@@ -28,7 +30,7 @@ public class InputTextParser implements FileParser<List<Map.Entry<String, Boolea
 	 *         if it's a word or not
 	 * @throws IOException if file cannot be found or read
 	 */
-	// O(n) - iterates over n number of lines
+	// O(n) iterates over n number of lines
 	@Override
 	public List<Map.Entry<String, Boolean>> parse(String filePath) throws IOException {
 		var tokens = new ArrayList<Map.Entry<String, Boolean>>();

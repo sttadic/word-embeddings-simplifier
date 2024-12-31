@@ -26,8 +26,8 @@ public class InputHandler {
 	 * 
 	 * @return the user's choice as an integer, or -1 for invalid input
 	 */
-	// O(1) - all operations within method are constant time
-	public int processMenuSelection() {	
+	// O(1) all operations within method are constant time
+	public int processMenuSelection() {
 		int choice;
 		try {
 			choice = Integer.parseInt(scan.nextLine());
@@ -46,7 +46,7 @@ public class InputHandler {
 	 * @return the new file path provided by the user, or the current path for
 	 *         invalid input
 	 */
-	// O(n) where n is MAX_ATTEMPTS. It loops MAX_ATTEMPS in the worst case
+	// O(n) loops MAX_ATTEMPS in the worst case
 	public String setPath(String currentPath) {
 		int counter = MAX_ATTEMPTS;
 		while (true) {
@@ -63,13 +63,13 @@ public class InputHandler {
 	}
 
 	/**
-	 * Processes user's algorithm selection by reading an integer from the console.
-	 * Allows up to <b>MAX_ATTEMPTS</b> attempts to enter a valid selection (1-4)
-	 * before it defaults to the option 4.
+	 * Processes user's similarity algorithm selection by reading an integer from
+	 * the console. Allows up to <b>MAX_ATTEMPTS</b> attempts to enter a valid
+	 * selection (1-4) before it defaults to the option 4.
 	 * 
 	 * @return the algorithm choice as an integer wihtin 1-4 range
 	 */
-	// O(n) where n is MAX_ATTEMPTS. It loops MAX_ATTEMPS in the worst case
+	// O(n) loops MAX_ATTEMPS in the worst case
 	public int processAlgorithmSelection() {
 		int choice = 0;
 		int counter = MAX_ATTEMPTS;
@@ -94,7 +94,7 @@ public class InputHandler {
 	 * Closes the Scanner to release system resources and prevent resource leaks.
 	 * This method should be called when input is no longer needed.
 	 */
-	// O(1) - all operations within a method are constant time
+	// O(1) all operations within a method are constant time
 	public void closeScanner() {
 		if (scan != null)
 			scan.close();

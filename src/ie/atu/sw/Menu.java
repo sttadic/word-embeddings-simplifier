@@ -3,9 +3,10 @@ package ie.atu.sw;
 import static java.lang.System.out;
 
 /**
- * The class Menu serves as the main user interface and controls the flow of the
- * application. It displays varoius menu options, selected paths and algorithms
- * to the user and initiates processing based on user's configuration.
+ * The class {@code Menu} serves as the main user interface and controls the 
+ * flow of application. It displays varoius menu options, selected paths and 
+ * algorithms to the user and initiates processing based on user's 
+ * configuration.
  */
 public class Menu {
 	private InputHandler inputHandler;
@@ -15,7 +16,7 @@ public class Menu {
 	private String errorMsg;
 
 	/**
-	 * Instantiates a Menu object and initializes InputHandler and ConfigHandler.
+	 * Constructs a Menu object and initializes InputHandler and ConfigHandler.
 	 */
 	public Menu() {
 		this.inputHandler = new InputHandler();
@@ -27,7 +28,7 @@ public class Menu {
 	 * user input and handles selected option until user quits or application
 	 * completes.
 	 */
-	// O(n) where n is number of loops based on number of user inputs
+	// O(n) where n is number of user inputs
 	public void runApplication() {
 		while (keepRunning) {
 			showOptions();
@@ -50,7 +51,7 @@ public class Menu {
 		case 2 -> configHandler.setInputPath();
 		case 3 -> configHandler.setOutputPath();
 		case 4 -> configHandler.setCommonWordsPath();
-		case 5 -> comparisonAlgorithmSelection();
+		case 5 -> similarityAlgorithmSelection();
 		case 6 -> startProcessing();
 		case 7 -> keepRunning = false;
 		default -> errorMsg = "Invalid Selection! Please use one of the options above";
@@ -58,14 +59,14 @@ public class Menu {
 	}
 
 	/**
-	 * Prompts the user to select a vector comparison algorithm and delegates
+	 * Prompts the user to select a vector similarity algorithm and delegates
 	 * selection to the ConfigHandler to set the chosen algorithm.
 	 */
-	// O(1) - all constant time operations
-	private void comparisonAlgorithmSelection() {
+	// O(1) all constant time operations
+	private void similarityAlgorithmSelection() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE_BOLD);
-		out.println("Select Vector Comparison Algorithm");
+		out.println("Select Vector Similarity Algorithm");
 		out.print("**********************************");
 		out.println(ConsoleColour.WHITE);
 		out.println("(1) Cosine Similarity");
@@ -74,7 +75,7 @@ public class Menu {
 		out.println("(4) Combine All");
 		out.println();
 
-		configHandler.setComparisonAlgorithm();
+		configHandler.setSimilarityAlgorithm();
 	}
 
 	/**
@@ -88,7 +89,7 @@ public class Menu {
 	 * 
 	 * @throws Exception for any unexpected error during the simplification process
 	 */
-	// O(1) - all constant time operations
+	// O(1) all constant time operations
 	private void startProcessing() {
 		var config = configHandler.generateConfig();
 		try {
@@ -108,7 +109,7 @@ public class Menu {
 	 * settings. It also displays an error message if an error occurs during the
 	 * application execution."
 	 */
-	// O(1) since all operations in a method are constant time operations
+	// O(1) all operations in a method are constant time operations
 	private void showOptions() {
 		clearScreen();
 		out.println(ConsoleColour.WHITE);
@@ -130,8 +131,8 @@ public class Menu {
 		// Display common words file path
 		out.println("(4) Most Common Words File  ---> " + ConsoleColour.GREEN + configHandler.getCommonWordsFilePath()
 				+ ConsoleColour.WHITE);
-		// Display algorithm used for comparison
-		out.println("(5) Set Comparison Method   ---> " + ConsoleColour.GREEN + configHandler.getVectorComparisonAlgo()
+		// Display algorithm used for similarity calculation
+		out.println("(5) Set Similarity Method   ---> " + ConsoleColour.GREEN + configHandler.getVectorSimilarityAlg()
 				+ ConsoleColour.WHITE);
 		// Start simplifying text
 		out.println("(6) START PROCESSING");
@@ -153,7 +154,7 @@ public class Menu {
 	 * Clears the terminal screen. Does not work in all environments like IDE
 	 * consoles.
 	 */
-	// O(1) - all constant time operations in a method
+	// O(1) all constant time operations in a method
 	public static void clearScreen() {
 		out.print("\033[H\033[2J");
 		out.flush();

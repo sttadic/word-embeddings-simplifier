@@ -3,8 +3,8 @@ package ie.atu.sw;
 import java.util.*;
 
 /**
- * The Tokenizer class tokenizes lines of text into individual tokens. Each
- * token is classified as either a text token or a non-text token (e.g.
+ * The {@code Tokenizer} class tokenizes lines of text into individual tokens.
+ * Each token is classified as either a text token or a non-text token (e.g.
  * punctuation).
  */
 public class Tokenizer {
@@ -16,7 +16,7 @@ public class Tokenizer {
 	 * @return a list of tokens paired with a boolean indicating if it's a text or
 	 *         non-text
 	 */
-	// O(n) - iterates over n characters of a char array (line)
+	// O(n) iterates over n characters of a char array (line)
 	public List<Map.Entry<String, Boolean>> tokenize(String line) {
 		var lineTokens = new ArrayList<Map.Entry<String, Boolean>>();
 		var token = new StringBuilder();

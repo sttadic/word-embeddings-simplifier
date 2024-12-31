@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Parses a file containing word embeddings and stores them in a map. Each line 
+ * The {@code WordEmbeddingsParser} class implements the {@link FileParser} to 
+ * parse a file containing word embeddings and stores them in a map. Each line 
  * in the file represents a word followed by its vector.
  */
 public class WordEmbeddingsParser implements FileParser<Map<String, double[]>>{
@@ -14,10 +15,11 @@ public class WordEmbeddingsParser implements FileParser<Map<String, double[]>>{
 	 * a word followed by its embedding values, separated by comma.
 	 * 
 	 * @param filePath the path to the embeddings file
-	 * @return a map where the key is a word and value is an array of emmedding values
+	 * @return a map where the key is a word and value is an array of emmedding 
+	 * 		   values
 	 * @throws IOException if the file cannot be found or read
 	 */
-	// O(n) - loops over n number of lines
+	// O(n) loops over n number of lines
 	@Override
 	public Map<String, double[]> parse(String filePath) throws IOException {
 		Map<String, double[]> embeddingsMap = new HashMap<>();

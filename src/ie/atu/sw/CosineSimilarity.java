@@ -1,15 +1,16 @@
 package ie.atu.sw;
 
 /**
- * The {@code CosineSimilarity} class implements the {@link VectorSimilarity}
- * interface to calculate cosine similarity between two vectors.
+ * The {@code CosineSimilarity} class implements the
+ * {@link VectorSimilarityAlgorithm} interface to calculate cosine similarity
+ * between two vectors.
  * 
  * <p>
  * Cosine similarity is a measure of similarity that calculates the cosine of
  * the angle between two vectors in a multi-dimensional space.
  * </p>
  */
-public class CosineSimilarity implements VectorSimilarity {
+public class CosineSimilarity implements VectorSimilarityAlgorithm {
 
 	/**
 	 * Computes cosine similarity between two vectors.
@@ -20,7 +21,7 @@ public class CosineSimilarity implements VectorSimilarity {
 	 */
 	// O(n) iterates once over both vectors where n is length of a vector
 	@Override
-	public double compare(double[] vector1, double[] vector2) {
+	public double calculateSimilarity(double[] vector1, double[] vector2) {
 		double dotProd = 0.0;
 		double sumInputVec = 0.0;
 		double sumEmbedVec = 0.0;

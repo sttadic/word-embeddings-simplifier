@@ -4,8 +4,8 @@ import java.io.*;
 
 /**
  * The class {@code OutputWriter} provides utility methods for writing text
- * output to a file. It encapsulates BufferedReader and implements AutoCloseable
- * to ensure proper resource management.
+ * output to a file. It encapsulates BufferedReader and implements
+ * {@code AutoCloseable} to ensure proper resource management.
  */
 public class OutputWriter implements AutoCloseable {
 	private final BufferedWriter writer;
@@ -26,7 +26,7 @@ public class OutputWriter implements AutoCloseable {
 	 * @param token the token to write
 	 * @throws IOException in case an error occurs while writing to the file
 	 */
-	// O(1) - invoking a method is constant time operation
+	// O(1) invoking a method is constant time operation
 	public void write(String token) throws IOException {
 		writer.write(token);
 	}
