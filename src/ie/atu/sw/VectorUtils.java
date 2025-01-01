@@ -44,4 +44,8 @@ public class VectorUtils {
 		}
 		return commonWordEmbeddings;
 	}
+	
+	public static double[] assignVector(String word, Map<String, double[]> wordEmbeddings) {
+		return wordEmbeddings.get(word);
+	}
 }

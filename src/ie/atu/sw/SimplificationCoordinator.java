@@ -48,8 +48,12 @@ public class SimplificationCoordinator {
 		try (OutputWriter outputWriter = new OutputWriter(config.outputFilePath())) {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
 				String token = entry.getKey();
+				// Token is a word but not a common words
 				if (entry.getValue() && !commonEmbedMap.containsKey(token)) {
-					simpProcessor.calculateSimilarity(token, commonEmbedMap, embedMap);
+					// Get vector for a word to simplifay
+					double[] wordVector = VectorUtils.assignVector(token, embedMap);
+					
+					simpProcessor.calculateSimilarity(wordVector, commonEmbedMap);
 				}
 				outputWriter.write(token);
 			}

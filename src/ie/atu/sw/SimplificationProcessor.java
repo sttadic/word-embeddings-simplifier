@@ -9,9 +9,8 @@ public class SimplificationProcessor {
 		this.vectorSimilarityAlg = vectorSimilarityAlg;
 	}
 
-	public String calculateSimilarity(String word, Map<String, double[]> commonEmbedMap, Map<String, double[]> embedMap) {
-		// Find vector for word in embeddings
-		double[] wordVector = embedMap.get(word);
+	public String calculateSimilarity(double[] wordVector, Map<String, double[]> commonEmbedMap) {
+
 
 		// Calculate similarity between vector of word and all vectors of commonWords
 
