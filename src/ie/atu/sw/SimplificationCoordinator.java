@@ -45,8 +45,8 @@ public class SimplificationCoordinator {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
 				String token = entry.getKey();
 				if (entry.getValue() && !commonEmbedMap.containsKey(token)) {
-					// token = get the most similar word by running vector similarity algorithms
-					// (embedMap, config.vectorSimilarityAlg())
+					VectorSimilarityManager vsManager = new VectorSimilarityManager(config.vectorSimilarityAlg());
+					vsManager.calculateSimilarity();
 				}
 				outputWriter.write(token);
 			}
