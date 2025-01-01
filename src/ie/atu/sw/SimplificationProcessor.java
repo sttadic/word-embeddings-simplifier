@@ -43,8 +43,7 @@ public class SimplificationProcessor {
 	 * @throws IOException if an error occures while writing to the output file
 	 */
 	// O(n^2) loops over n number of tokens and performs lookup in a map of size m
-	public void simplify(Map<String, double[]> commonEmbedMap, Map<String, double[]> embedMap)
-			throws IOException {
+	public void simplify(Map<String, double[]> commonEmbedMap, Map<String, double[]> embedMap) throws IOException {
 		try (OutputWriter outputWriter = new OutputWriter(config.outputFilePath())) {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
 				String token = entry.getKey();
@@ -53,7 +52,7 @@ public class SimplificationProcessor {
 					// Get word embedding map entry for a word to simplifay
 					var toSimplifyEmbedding = VectorUtils.assignVector(token, embedMap);
 
-					similarityMatcher.similaritySearch(toSimplifyEmbedding.getValue(), commonEmbedMap,
+					token = similarityMatcher.similaritySearch(toSimplifyEmbedding.getValue(), commonEmbedMap,
 							config.vectorSimilarityAlg());
 				}
 				outputWriter.write(token);
