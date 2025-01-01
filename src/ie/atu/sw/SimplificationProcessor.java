@@ -48,12 +48,17 @@ public class SimplificationProcessor {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
 				String token = entry.getKey();
 				// Token is a word but not a common words
-				if (entry.getValue() && !commonEmbedMap.containsKey(token)) {
+				if (entry.getValue() && !commonEmbedMap.containsKey(token.toLowerCase())) {
+					
+					boolean lowerCase = true;
+					if (Character.isUpperCase(token.toCharArray()[0])) lowerCase = false;
+					
 					// Get word embedding map entry for a word to simplifay
-					var toSimplifyEmbedding = VectorUtils.assignVector(token, embedMap);
+					var toSimplifyEmbedding = VectorUtils.assignVector(token.toLowerCase(), embedMap);
 
 					token = similarityMatcher.similaritySearch(toSimplifyEmbedding.getValue(), commonEmbedMap,
 							config.vectorSimilarityAlg());
+					if (!lowerCase) token = token.substring(0, 1).toUpperCase() + token.substring(1, token.length());
 				}
 				outputWriter.write(token);
 			}

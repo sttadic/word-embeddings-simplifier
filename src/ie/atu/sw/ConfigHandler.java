@@ -10,7 +10,7 @@ import static java.lang.System.out;
  */
 public class ConfigHandler {
 	private InputHandler inputHandler;
-	private String embeddingsFilePath = "../word-embeddings.txt";
+	private String embeddingsFilePath = "../embeddings.txt";
 	private String outputFilePath = "../output.txt";
 	private String inputFilePath = "../input.txt";
 	private String commonWordsFilePath = "../google-1000.txt";
