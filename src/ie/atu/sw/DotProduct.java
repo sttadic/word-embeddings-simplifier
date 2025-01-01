@@ -1,15 +1,15 @@
 package ie.atu.sw;
 
 /**
- * The {@code DotProduct} class implements the {@link VectorSimilarityAlgorithm}
- * interface to calculate the dot product of two vectors.
+ * The {@code DotProduct} class extends the {@link VectorSimilarityAlgorithm}
+ * abstract class to calculate the dot product of two vectors.
  * 
  * <p>
  * Dot product is a scalar value that represents the sum of the products of
  * corresponding elements in two vectors.
  * </p>
  */
-public class DotProduct implements VectorSimilarityAlgorithm {
+public class DotProduct extends VectorSimilarityAlgorithm {
 
 	/**
 	 * Computes dot product of two vectors.

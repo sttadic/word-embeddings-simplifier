@@ -1,16 +1,17 @@
 package ie.atu.sw;
 
 /**
- * The {@code CosineSimilarity} class implements the
- * {@link VectorSimilarityAlgorithm} interface to calculate cosine similarity
- * between two vectors.
+ * The {@code CosineSimilarity} class extends the
+ * {@link VectorSimilarityAlgorithm} abstract class to calculate cosine
+ * similarity between two vectors.
  * 
  * <p>
- * Cosine similarity is a measure of similarity that calculates the cosine of
- * the angle between two vectors in a multi-dimensional space.
+ * Cosine similarity measures the cosine of the angle between two vectors in a
+ * multi-dimensional space, resulting in a score between -1 (opposite direction)
+ * and 1 (identical direction).
  * </p>
  */
-public class CosineSimilarity implements VectorSimilarityAlgorithm {
+public class CosineSimilarity extends VectorSimilarityAlgorithm {
 
 	/**
 	 * Computes cosine similarity between two vectors.
@@ -31,7 +32,7 @@ public class CosineSimilarity implements VectorSimilarityAlgorithm {
 			sumInputVec += Math.pow(vector1[i], 2);
 			sumEmbedVec += Math.pow(vector2[i], 2);
 		}
-		// Square root of product of vectors
+		// Square root of product of vectors (magnitude)
 		double sqRootOfProd = Math.sqrt(sumInputVec * sumEmbedVec);
 		// Avoid possible division by zero by returning 'NaN' as a flag
 		if (sqRootOfProd == 0.0)

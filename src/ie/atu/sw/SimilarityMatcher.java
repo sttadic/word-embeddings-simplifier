@@ -5,14 +5,14 @@ import java.util.*;
 public class SimilarityMatcher {
 	private VectorSimilarityAlgorithm similaritySearchMethod;
 
-	private VectorSimilarityAlgorithm selectSimilaritySearchMethod(String alg) {
-		return switch (alg.toLowerCase()) {
+	private VectorSimilarityAlgorithm selectSimilaritySearchMethod(String vectorSimAlg) {
+		return switch (vectorSimAlg.toLowerCase()) {
 		case "cosine similarity" -> similaritySearchMethod = new CosineSimilarity();
 		case "eculidean distance" -> similaritySearchMethod = new EuclideanDistance();
 		case "dot product" -> similaritySearchMethod = new DotProduct();
 		case "combine all" -> similaritySearchMethod = new CompositeSimilarity(
 				List.of(new CosineSimilarity(), new EuclideanDistance(), new DotProduct()));
-		default -> throw new IllegalArgumentException("Invalid similarity algorithm: " + alg);
+		default -> throw new IllegalArgumentException("Invalid similarity algorithm: " + vectorSimAlg);
 		};
 	}
 
@@ -21,11 +21,8 @@ public class SimilarityMatcher {
 
 		similaritySearchMethod = selectSimilaritySearchMethod(vectorSimilarityAlg);
 		for (Map.Entry<String, double[]> entry : commonEmbedMap.entrySet()) {
-			double topScore = 0.0d;
-			double similarityScore = similaritySearchMethod.calculateSimilarity(wordVector, entry.getValue());
-
+			// call appropriate method depending on similaritySearchMehod
 		}
-
 		return null;
 	}
 }

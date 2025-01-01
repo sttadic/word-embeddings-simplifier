@@ -2,7 +2,7 @@ package ie.atu.sw;
 
 import java.util.*;
 
-public class CompositeSimilarity implements VectorSimilarityAlgorithm{
+public class CompositeSimilarity extends VectorSimilarityAlgorithm{
 	
 	public CompositeSimilarity(List<VectorSimilarityAlgorithm> algorithms) {
 		
