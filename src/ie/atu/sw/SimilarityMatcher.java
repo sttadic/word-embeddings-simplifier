@@ -1,12 +1,9 @@
 package ie.atu.sw;
 
-import java.util.*;
+import java.util.List;
 
-public class VectorSimilarityManager {
+public class SimilarityMatcher {
 
-	public VectorSimilarityManager(String vectorSimAlgorithm) {
-		
-	}
 	private VectorSimilarityAlgorithm runAlgorithm(String alg) {
 		return switch (alg.toLowerCase()) {
 		case "cosine similarity"  -> new CosineSimilarity();
@@ -16,9 +13,5 @@ public class VectorSimilarityManager {
 			new CompositeSimilarity(List.of(new CosineSimilarity(), new EuclideanDistance(), new DotProduct()));
 		default                   -> throw new IllegalArgumentException("Invalid similarity algorithm: " + alg);
 		};
-	}
-	
-	public String calculateSimilarity() {
-		return null;
 	}
 }

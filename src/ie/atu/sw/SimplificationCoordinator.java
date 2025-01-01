@@ -14,6 +14,7 @@ import java.util.*;
 public class SimplificationCoordinator {
 	private final Map<String, double[]> commonEmbedMap;
 	private final List<Map.Entry<String, Boolean>> toSimplifyList;
+	private final SimplificationProcessor simpProcessor;
 
 	/**
 	 * Constructs a {@code SimplificationCoordinator} with the specified common
@@ -28,6 +29,7 @@ public class SimplificationCoordinator {
 			List<Map.Entry<String, Boolean>> toSimplifyList) {
 		this.commonEmbedMap = commonEmbedMap;
 		this.toSimplifyList = toSimplifyList;
+		this.simpProcessor = new SimplificationProcessor(null);
 	}
 
 	/**
@@ -45,8 +47,8 @@ public class SimplificationCoordinator {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
 				String token = entry.getKey();
 				if (entry.getValue() && !commonEmbedMap.containsKey(token)) {
-					VectorSimilarityManager vsManager = new VectorSimilarityManager(config.vectorSimilarityAlg());
-					vsManager.calculateSimilarity();
+					SimplificationProcessor vsManager = new SimplificationProcessor(config.vectorSimilarityAlg());
+					vsManager.calculateSimilarity(token, commonEmbedMap, embedMap);
 				}
 				outputWriter.write(token);
 			}
