@@ -25,27 +25,35 @@ public class VectorUtils {
 	}
 
 	/**
-	 * Assigns vectors to common words by retrieving their embeddings from the
+	 * Assigns vectors to a set of words by retrieving their embeddings from the
 	 * provided word embeddings map.
 	 * 
-	 * @param commonWords    a set of common words for which embeddings are to be
-	 *                       assigned
+	 * @param wordsSet       a set of words for which embeddings are to be assigned
 	 * @param wordEmbeddings a map of word embeddings
-	 * @return a map of common words with thier corresponding vectors
+	 * @return a map of words with thier corresponding vectors
 	 */
 	// O(n^2) loops over set of size n and performs lookup in a map of size m
-	public static Map<String, double[]> assignVectors(Set<String> commonWords, Map<String, double[]> wordEmbeddings) {
-		var commonWordEmbeddings = new HashMap<String, double[]>();
+	public static Map<String, double[]> assignVectors(Set<String> wordsSet, Map<String, double[]> wordEmbeddings) {
+		var newWordEmbeddings = new HashMap<String, double[]>();
 
-		for (String word : commonWords) {
+		for (String word : wordsSet) {
 			if (wordEmbeddings.containsKey(word)) {
-				commonWordEmbeddings.put(word, wordEmbeddings.get(word));
+				newWordEmbeddings.put(word, wordEmbeddings.get(word));
 			}
 		}
-		return commonWordEmbeddings;
+		return newWordEmbeddings;
 	}
-	
-	public static double[] assignVector(String word, Map<String, double[]> wordEmbeddings) {
-		return wordEmbeddings.get(word);
+
+	/**
+	 * Assigns vector to a word by retrieving its embedding from the provided word
+	 * embeddings map.
+	 * 
+	 * @param word           a word for which embedding is to be assigned
+	 * @param wordEmbeddings a map of word embeddings
+	 * @return a map entry containing a word and its corresponding vector
+	 */
+	public static Map.Entry<String, double[]> assignVector(String word, Map<String, double[]> wordEmbeddings) {
+		var wordVector = wordEmbeddings.get(word);
+		return Map.entry(word, wordVector);
 	}
 }

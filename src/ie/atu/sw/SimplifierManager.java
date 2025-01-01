@@ -63,13 +63,13 @@ public class SimplifierManager {
 	 * @throws Exception if an error occures during simplification process
 	 */
 	// O(1) all constatnt time operations
-	public void simplify() throws Exception {
+	public void startSimplification() throws Exception {
 		var embedMap = new WordEmbeddingsParser().parse(config.embeddingsFilePath());
 		var commonEmbedMap = generateCommonEmbeddings(embedMap);
 		var toSimplifyList = new InputTextParser(tokanizer).parse(config.inputFilePath());
 
-		var simCoordinator = new SimplificationCoordinator(config, toSimplifyList);
-		simCoordinator.coordinateSimplification(commonEmbedMap, embedMap);
+		var simCoordinator = new SimplificationProcessor(config, toSimplifyList);
+		simCoordinator.simplify(commonEmbedMap, embedMap);
 	}
 
 	/**

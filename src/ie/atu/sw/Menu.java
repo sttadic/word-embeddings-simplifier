@@ -94,7 +94,7 @@ public class Menu {
 		var config = configHandler.generateConfig();
 		try {
 			// Singleton pattern - ensure only one instance of SimplifierManager is used
-			SimplifierManager.getInstance(config).simplify();
+			SimplifierManager.getInstance(config).startSimplification();
 		} catch (Exception e) {
 			errorMsg = e.getMessage();
 			return;
