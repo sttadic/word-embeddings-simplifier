@@ -68,8 +68,8 @@ public class SimplifierManager {
 		var commonEmbedMap = generateCommonEmbeddings(embedMap);
 		var toSimplifyList = new InputTextParser(tokanizer).parse(config.inputFilePath());
 
-		var simCoordinator = new SimplificationCoordinator(commonEmbedMap, toSimplifyList);
-		simCoordinator.coordinateSimplification(embedMap, config);
+		var simCoordinator = new SimplificationCoordinator(config, toSimplifyList);
+		simCoordinator.coordinateSimplification(commonEmbedMap, embedMap);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class SimplifierManager {
 	 * @return a map of common word embeddings
 	 * @throws IOException if an error occurs while reading common words
 	 */
-	// O(1)  all constatnt time operations
+	// O(1) all constatnt time operations
 	private Map<String, double[]> generateCommonEmbeddings(Map<String, double[]> embeddings) throws IOException {
 		var commonWordsSet = new CommonWordsParser().parse(config.commonWordsFilePath());
 		return VectorUtils.assignVectors(commonWordsSet, embeddings);
