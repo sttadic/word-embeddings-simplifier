@@ -14,7 +14,7 @@ import java.util.*;
 public class SimplificationProcessor {
 	private final SimplifierConfig config;
 	private final List<Map.Entry<String, Boolean>> toSimplifyList;
-	private final SimilarityMatcher similarityMatcher;
+	private final SimilarityFinder similarityMatcher;
 
 	/**
 	 * Constructs a {@code SimplificationProcessor} with the specified common words
@@ -28,7 +28,7 @@ public class SimplificationProcessor {
 	public SimplificationProcessor(SimplifierConfig config, List<Map.Entry<String, Boolean>> toSimplifyList) {
 		this.config = config;
 		this.toSimplifyList = toSimplifyList;
-		this.similarityMatcher = new SimilarityMatcher();
+		this.similarityMatcher = new SimilarityFinder();
 	}
 
 	/**

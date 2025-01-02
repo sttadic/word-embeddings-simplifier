@@ -3,14 +3,14 @@ package ie.atu.sw;
 import java.util.*;
 
 /**
- * The {@code SimilarityMatcher} class provides functionality to find the most
+ * The {@code SimilarityFinder} class provides functionality to find the most
  * similar word from a map of common word embeddings based on a selected vector
  * similarity algorithm.
  * 
  * The search is performed by comparing the given word vector with the vectors
  * stored in the map and selecting the word with the highest similarity score.
  */
-public class SimilarityMatcher {
+public class SimilarityFinder {
 	private VectorSimilarityAlgorithm similaritySearchMethod;
 
 	/**
