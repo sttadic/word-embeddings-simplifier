@@ -39,7 +39,9 @@ public class SimilarityFinder {
 		for (Map.Entry<String, double[]> entry : commonEmbedMap.entrySet()) {
 			VectorUtils.validateEqualLength(wordVector, entry.getValue());    // Check vectors lengths
 			double similarityScore = similaritySearchMethod.calculateSimilarity(wordVector, entry.getValue());
-
+			// Skip if cosine similarity returns NaN indicating zero magnitude
+			if (Double.isNaN(similarityScore)) continue;
+			
 			if (similarityScore > bestSimilairtyScore) {
 				bestSimilairtyScore = similarityScore;
 				mostSimilarWord = entry.getKey();

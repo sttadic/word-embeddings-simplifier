@@ -35,8 +35,7 @@ public class CosineSimilarity extends VectorSimilarityAlgorithm {
 		// Square root of product of vectors (magnitude)
 		double sqRootOfProd = Math.sqrt(sumInputVec * sumEmbedVec);
 		// Avoid possible division by zero by returning 'NaN' as a flag
-		if (sqRootOfProd == 0.0)
-			return Double.NaN;
+		if (sqRootOfProd == 0.0) return Double.NaN;
 		// Return cosine similarity (quotient of dot product and 'sqRootOfProd')
 		return dotProd / sqRootOfProd;
 	}
