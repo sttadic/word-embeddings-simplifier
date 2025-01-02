@@ -42,7 +42,7 @@ public class SimplificationProcessor {
 	 * 
 	 * @throws IOException if an error occures while writing to the output file
 	 */
-	// O(n) loops over n number of tokens
+	// O(n) loops over n number of entries
 	public void simplify(Map<String, double[]> commonEmbedMap, Map<String, double[]> embedMap) throws IOException {
 		try (OutputWriter outputWriter = new OutputWriter(config.outputFilePath())) {
 			for (Map.Entry<String, Boolean> entry : toSimplifyList) {
@@ -76,20 +76,24 @@ public class SimplificationProcessor {
 
 	/**
 	 * Prepares a word for simplification by extracting its corresponding vector
-	 * from embeddings map and delegates simplification process taking into account
+	 * from embeddings map, and delegates simplification process taking into account
 	 * case sensitivity.
 	 * 
 	 * @param word           the word to be simplified
 	 * @param commonEmbedMap the map of common word embeddings
 	 * @param embedMap       the map consisting of a whole set of word embeddings
-	 * @return the simplified word
+	 * @return the simplified word, or original word if word was not found in word
+	 *         embeddings map
 	 */
 	// O(1) all constant time operations
 	private String processTokenAndSimplify(String word, Map<String, double[]> commonEmbedMap,
 			Map<String, double[]> embedMap) {
-		boolean isLowerCase = Character.isLowerCase(word.charAt(0));
 
 		var toSimplifyEmbedding = VectorUtils.assignVector(word.toLowerCase(), embedMap);
+		if (toSimplifyEmbedding == null) return word;
+
+		boolean isLowerCase = Character.isLowerCase(word.charAt(0));
+
 		word = similarityFinder.similaritySearch(toSimplifyEmbedding.getValue(), commonEmbedMap,
 				config.vectorSimilarityAlg());
 

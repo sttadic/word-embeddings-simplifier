@@ -50,10 +50,15 @@ public class VectorUtils {
 	 * 
 	 * @param word           a word for which embedding is to be assigned
 	 * @param wordEmbeddings a map of word embeddings
-	 * @return a map entry containing a word and its corresponding vector
+	 * @return a map entry containing a word and its corresponding vector, or a null
+	 *         if word is not found in word embeddings map
 	 */
 	public static Map.Entry<String, double[]> assignVector(String word, Map<String, double[]> wordEmbeddings) {
-		var wordVector = wordEmbeddings.get(word);
+		double[] wordVector;
+
+		wordVector = wordEmbeddings.get(word);
+		if (wordVector == null) return null;
+
 		return Map.entry(word, wordVector);
 	}
 }
