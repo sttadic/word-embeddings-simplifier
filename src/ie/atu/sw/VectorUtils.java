@@ -14,10 +14,15 @@ public class VectorUtils {
 	 * 
 	 * @param vector1 the first vector
 	 * @param vector2 the second vector
-	 * @throws IllegalArgumentException if vectors have different lengths
+	 * @throws IllegalArgumentException if vectors have different lengths or if they
+	 * 									are null
 	 */
 	// O(1) preforms constant number of checks on vectors length
 	public static void validateEqualLength(double[] vector1, double[] vector2) {
+		if (vector1 == null || vector2 == null) {
+			throw new IllegalArgumentException(
+					"Vector similarity calculation failed! One or both vectors are null.");
+		}
 		if (vector1.length != vector2.length) {
 			throw new IllegalArgumentException(
 					"Vector similarity calculation failed! Vectors must have the same length.");
