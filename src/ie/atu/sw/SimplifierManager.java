@@ -7,7 +7,7 @@ import java.util.Map;
  * The {@code SimplifierManager} class serves as the central coordinator for the
  * first part of simplification process. It is responsible for initializing
  * required resources in order to prepare data for simplification by delegating
- * work to parsers, tokenizers, and finally to SimplificationCoordinator.
+ * work to parsers, tokenizers, and finally to {@code SimplificationProcessor}.
  * 
  * This class uses the singleton pattern to ensure a single instance manages the
  * process, preventing creation of a new instance if the process is restarted
@@ -58,7 +58,7 @@ public class SimplifierManager {
 	/**
 	 * Initiates the simplification process that includes parsing word embeddings
 	 * and input text, generating a mapping of common word embeddings and delegating
-	 * simplification to the {@code SimplificationCoordinator}.
+	 * simplification to the {@code SimplificationProcessor}.
 	 * 
 	 * @throws Exception if an error occures during simplification process
 	 */
@@ -68,8 +68,8 @@ public class SimplifierManager {
 		var commonEmbedMap = generateCommonEmbeddings(embedMap);
 		var toSimplifyList = new InputTextParser(tokanizer).parse(config.inputFilePath());
 
-		var simCoordinator = new SimplificationProcessor(config, toSimplifyList);
-		simCoordinator.simplify(commonEmbedMap, embedMap);
+		var simProcessor = new SimplificationProcessor(config, toSimplifyList);
+		simProcessor.simplify(commonEmbedMap, embedMap);
 	}
 
 	/**
