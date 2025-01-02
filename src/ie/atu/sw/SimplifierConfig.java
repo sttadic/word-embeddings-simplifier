@@ -1,7 +1,8 @@
 package ie.atu.sw;
 
 /**
- * Record to encapsulate configuration settings for the application.
+ * The {@code SimplifierConfig} record encapsulates configuration settings for
+ * the application.
  * 
  * @param embeddingsFilePath  the file path to the word embeddings file
  * @param inputFilePath       the file path to the text file that needs to be

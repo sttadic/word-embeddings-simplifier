@@ -5,13 +5,15 @@ import java.util.Map;
 
 /**
  * The {@code SimplifierManager} class serves as the central coordinator for the
- * first part of simplification process. It is responsible for initializing
- * required resources in order to prepare data for simplification by delegating
- * work to parsers, tokenizers, and finally to {@code SimplificationProcessor}.
+ * simplification process. It is responsible for initializing required resources
+ * in order to prepare data for simplification by delegating work to parsers,
+ * tokenizers, and finally to {@code SimplificationProcessor}.
  * 
+ * <p>
  * This class uses the singleton pattern to ensure a single instance manages the
  * process, preventing creation of a new instance if the process is restarted
  * after an error occures, which returns control to the Menu.
+ * </p>
  */
 public class SimplifierManager {
 	private static SimplifierManager instance;
