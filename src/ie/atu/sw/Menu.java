@@ -72,7 +72,7 @@ public class Menu {
 		out.println("(1) Cosine Similarity");
 		out.println("(2) Euclidean Distance");
 		out.println("(3) Dot Product");
-		out.println("(4) Combine All");
+		out.println("(4) Combined Average of all");
 		out.println();
 
 		configHandler.setSimilarityAlgorithm();

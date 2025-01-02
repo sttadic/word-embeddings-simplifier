@@ -135,7 +135,7 @@ public class ConfigHandler {
 			vectorSimilarityAlg = "Dot Product";
 		}
 		default -> {
-			vectorSimilarityAlg = "Combine All (Cosine Similarity, Euclidean Distance, Dot Product)";
+			vectorSimilarityAlg = "Combined Average";
 		}
 		}
 	}
