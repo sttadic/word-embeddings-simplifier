@@ -1,4 +1,4 @@
-# Java Application - Text Simplifier with Word Embeddings
+# Text Simplifier with Word Embeddings
 Final project for the Software Design & Data Structures module - Higher Diploma in Software Development. <br>
 Author: Stjepan Tadic
 
