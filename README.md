@@ -10,13 +10,13 @@ This is console-based Java application that simplifies text by replacing complex
 <br>
 
 ## Usage
-#### Prerequisites: Java Development Kit (JDK) 19 or higher.
+#### Prerequisites: Java 19 or higher (virtual threads support).
 - Clone the repository:
 ```bash
 git clone https://github.com/sttadic/word-embeddings-simplifier.git
 ```
 
-- Run the compiled Runner class:
+- Run the application (compiled):
 ```bash
 java ie.atu.sw.Runner
 ```
@@ -48,21 +48,21 @@ A list of 1,000 most frequently used words in English.
 <br>
 
 ## Features
-- **Menu-Driven User Interface** <br>
-The application provides an intuitive, interactive menu that allows users to configure settings and initiate text simplification process. Users can specify paths for word embeddings, common words, and input/output files or relay on default settings. Additionally, the menu enables users to select a vector similarity algorithm, choosing from *Cosine Similarity*, *Euclidean Distance*, and *Dot Product*, or a *combined average* of these methods to calculate similarity scores required for the simplification process.
+> **Menu-Driven User Interface** <br>
+- The application provides an intuitive, interactive menu that allows users to configure settings and initiate text simplification process. Users can specify paths for word embeddings, common words, and input/output files or relay on default settings. Additionally, the menu enables users to select a vector similarity algorithm, choosing from *Cosine Similarity*, *Euclidean Distance*, and *Dot Product*, or a *combined average* of these methods to calculate similarity scores required for the simplification process.
 
-- **Robust Error Handling** <br>
-The application delivers user-friendly error messages within a menu for invalid inputs, missing files, unsupported formats, unequal vector lengths, issues during file reading and writing, and other exceptions. It also handles runtime errors such as division by zero or un-processable lines, ensuring minimal disruption to the user experience.
+> **Extensive Error Handling** <br>
+- The application delivers user-friendly error messages within a menu for invalid inputs, missing files, unsupported formats, unequal vector lengths, issues during file reading and writing, and other exceptions. It also handles runtime errors such as division by zero or un-processable lines, ensuring minimal disruption to the user experience.
 
-- **Multithreading** <br>
-The application employs concurrency using *Virtual Threads* and *Executor Service* for processing word embeddings.
+> **Multithreading** <br>
+- The application employs concurrency using *Virtual Threads* and *Executor Service* for processing word embeddings.
 
-- **Singleton Pattern** <br> 
-The Singleton Design Pattern is utilized in the *SimplifierManager* class to ensure that a single instance manages the simplification process, even if an error returns control to the menu, thus preventing unnecessary instantiations.
+> **Singleton Pattern** <br> 
+- The Singleton Design Pattern is utilized in the *SimplifierManager* class to ensure that a single instance manages the simplification process, even if an error returns control to the menu, thus preventing unnecessary instantiations.
 
-- **Preservation of Text Structure** <br>
-The Tokenizer class plays a key role in preserving the input text structure, such as punctuation and spaces. Its functionality ensures that these elements are accurately maintained in the output, contributing to readability and correctness in the simplified text.
+> **Preservation of Text Structure** <br>
+- The Tokenizer class plays a key role in preserving the input text structure, such as punctuation and spaces. Its functionality ensures that these elements are accurately maintained in the output, contributing to readability and correctness in the simplified text.
 
-- **Abstractions and Polymorphism** <br> 
-The application adheres to *Object-Oriented Design Principles*, including *Single Responsibility Principle (SRP)* and *Separation of Concerns (SoC)*, to maintain a clean and modular codebase. Functionality is divided into dedicated classes, such as parsers, similarity algorithms, input/output handlers, each serving a well-defined purpose.<br>Key abstractions, such as *interfaces*, *abstract classes*, *records* and *utility classes* (e.g., *FileParser, VectorSimilarityAlgorithm, SimplifierConfig, VectorUtils*) enhance flexibility, loose coupling, and maintainability.
-<br> Polymorphism is leveraged, particularly in the *SimilarityFinder* class, where the appropriate *VectorSimilarityAlgorithm* implementation is dynamically selected at runtime based on user input, ensuring the system remains scalable and flexible enabling integration of new algorithms or features.
+> **Abstractions and Polymorphism** <br> 
+- The application adheres to *Object-Oriented Design Principles*, including *Single Responsibility Principle (SRP)* and *Separation of Concerns (SoC)*, to maintain a clean and modular codebase. Functionality is divided into dedicated classes, such as parsers, similarity algorithms, input/output handlers, each serving a well-defined purpose.<br>Key abstractions, such as *interfaces*, *abstract classes*, *records* and *utility classes* (e.g., *FileParser, VectorSimilarityAlgorithm, SimplifierConfig, VectorUtils*) enhance flexibility, loose coupling, and maintainability.
+- Polymorphism is leveraged, particularly in the *SimilarityFinder* class, where the appropriate *VectorSimilarityAlgorithm* implementation is dynamically selected at runtime based on user input, ensuring the system remains scalable and flexible enabling integration of new algorithms or features.
