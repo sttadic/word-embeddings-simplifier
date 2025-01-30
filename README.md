@@ -1,10 +1,4 @@
 # Text Simplifier with Word Embeddings
-Final project for the Software Design & Data Structures module - Higher Diploma in Software Development. <br>
-Author: Stjepan Tadic
-
-<br>
-
-## Description
 This is console-based Java application that simplifies text by replacing complex or uncommon words with simpler alternatives. It leverages *word embeddings* and *vector similarity algorithms* to find appropriate replacements, and ensures the simplified text retains its original structure.
 
 <br>
